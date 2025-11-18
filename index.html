@@ -244,21 +244,23 @@
             100% { transform: translateX(100%); }
         }
 
+        /* Sticky note + main photo */
         .photo-frame {
             position: relative;
             display: inline-block;
-            padding: 8px 8px 14px;
+            padding: 14px 14px 18px;
             background: #fffdf9;
-            border-radius: 18px;
+            border-radius: 28px;
             box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
             transform: rotate(-2.5deg);
             transition: transform 0.5s ease, box-shadow 0.5s ease;
+            overflow: hidden;
         }
 
         .photo-frame::before {
             content: "";
             position: absolute;
-            width: 58px;
+            width: 64px;
             height: 18px;
             background: rgba(255, 248, 220, 0.9);
             border-radius: 4px;
@@ -269,17 +271,21 @@
         }
 
         .photo-main {
-            width: 240px;
-            height: 240px;
+            width: 100%;
+            height: 260px;
             object-fit: cover;
-            border-radius: 14px;
+            border-radius: 20px;
             display: block;
+            margin: 0 auto;
+            opacity: 1;
+            transition: opacity 0.8s ease;
         }
 
         .photo-caption {
             margin-top: 8px;
             font-size: 0.9rem;
             color: rgba(58, 10, 78, 0.75);
+            text-align: center;
         }
 
         .photo-frame:hover {
@@ -344,7 +350,7 @@
 
         @keyframes blink {
             0%, 50% { opacity: 1; }
-            51%,100% { opacity: 0; }
+            51%,100 { opacity: 0; }
         }
 
         .buttons {
@@ -522,6 +528,22 @@
             margin-top: 4px;
         }
 
+        /* Tiny credit line */
+        .tiny-credit {
+            margin-top: 6px;
+            font-size: 0.65rem;
+            opacity: 0.18;
+        }
+
+        .tiny-credit a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .tiny-credit a:hover {
+            opacity: 0.5;
+        }
+
         /* Click confetti hearts */
         .confetti-heart {
             position: fixed;
@@ -561,8 +583,7 @@
             }
 
             .photo-main {
-                width: 210px;
-                height: 210px;
+                height: 220px;
             }
         }
     </style>
@@ -591,14 +612,14 @@
                         <span class="crown">👑</span>
                     </div>
                     <div class="subtitle">
-                        Today is officially&nbsp;your&nbsp;day.
+                        TODAY IS OFFICIALLY YOUR DAY.
                     </div>
                     <div class="divider"></div>
                 </header>
 
                 <div class="photo-frame">
-                    <!-- MAIN photo (you: love.png) -->
-                    <img src="love.png" alt="Us together" class="photo-main">
+                    <!-- MAIN photo (slideshow will run here) -->
+                    <img src="love.png" alt="Us together" class="photo-main" id="main-photo">
                     <div class="photo-caption">
                         My favorite view in this entire universe. 💘
                     </div>
@@ -654,9 +675,7 @@
 
                 <div class="hidden-section" id="coupon">
                     <h3>Princess Privileges Pass 🎟️</h3>
-                    <p>
-                        This pass is good for:
-                    </p>
+                    <p>This pass is good for:</p>
                     <ul>
                         <li>Unlimited “I love you”s (no expiry, no limit).</li>
                         <li>One big warm hug whenever you want – in person or virtual.</li>
@@ -676,6 +695,11 @@
                 <footer>
                     <p>With all my love, always,</p>
                     <p class="signature">Omii</p>
+                    <div class="tiny-credit">
+                        <a href="https://kushagrakumar.me" target="_blank" rel="noopener noreferrer">
+                            copyright reserved by kushagra · kushagrakumar.me
+                        </a>
+                    </div>
                 </footer>
             </div>
         </div>
@@ -734,7 +758,7 @@
             magicBtn.disabled = true;
         });
 
-        // Soft button: smooth scroll top of text
+        // Soft button scroll
         document.getElementById("soft-btn").addEventListener("click", () => {
             window.scrollTo({
                 top: 0,
@@ -742,7 +766,7 @@
             });
         });
 
-        // EXTRA MINI PHOTOS: love1.png, love2.png, love3.png ...
+        // Extra mini photos strip
         const miniPhotoContainer = document.getElementById("photo-strip");
         const extraPhotos = ["love1.png", "love2.png", "love3.png", "love4.png", "love5.png"];
 
@@ -752,11 +776,29 @@
             img.alt = "Memory photo";
             img.className = "photo-mini";
             img.onerror = function () {
-                // Hide if file doesn't exist
                 this.style.display = "none";
             };
             miniPhotoContainer.appendChild(img);
         });
+
+        // Main slideshow in sticky note (love.png → love1.png → ... → repeat)
+        const mainPhoto = document.getElementById("main-photo");
+        const slideSources = ["love.png", "love1.png", "love2.png", "love3.png", "love4.png", "love5.png"];
+        let slideIndex = 0;
+
+        function nextSlide() {
+            if (!mainPhoto) return;
+            mainPhoto.style.opacity = "0";
+            slideIndex = (slideIndex + 1) % slideSources.length;
+            const nextSrc = slideSources[slideIndex];
+            setTimeout(() => {
+                mainPhoto.src = nextSrc;
+                mainPhoto.style.opacity = "1";
+            }, 400);
+        }
+
+        // change photo every 4.5s
+        setInterval(nextSlide, 4500);
     </script>
 </body>
 </html>
