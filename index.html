@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Princess Day, [Samridhy]! 👑</title>
+
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #fce1e4, #e8a8e8);
+            color: #4a148c;
+            text-align: center;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #880e4f;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        .main-image {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            margin: 20px 0;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .main-image:hover {
+            transform: rotate(3deg) scale(1.05);
+        }
+
+        #surprise-button {
+            padding: 15px 30px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        #surprise-button:active {
+            transform: scale(0.98);
+        }
+
+        /* Confetti hearts */
+        .confetti-heart {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            opacity: 0.8;
+            top: -10px;
+            animation: fall linear infinite;
+            transform: rotate(45deg);
+            background-color: pink;
+            clip-path: polygon(
+                50% 0%,
+                100% 35%,
+                100% 100%,
+                50% 65%,
+                0% 100%,
+                0% 35%
+            );
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(500deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Happy Princess Day, My Love!</h1>
+        <p class="subtitle">You deserve all the crowns and kisses in the world.</p>
+
+        <div class="message-box">
+            <p>Dearest [Samridhy], today and every day, you shine brighter than any jewel. Thank you for filling my life with magic. I love you!</p>
+        </div>
+        
+        <img src="princess-graphic.png" alt="A lovely princess drawing" class="main-image">
+
+        <div class="animation-target">
+            <button id="surprise-button">Click for a Royal Surprise! 💖</button>
+        </div>
+
+        <div class="footer-note">
+            <p>Forever Yours, [Omii]</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('surprise-button').addEventListener('click', function() {
+            const container = document.querySelector('.animation-target');
+            const button = document.getElementById('surprise-button');
+            
+            button.textContent = "Magical Moment! ✨";
+            button.style.backgroundColor = '#9c27b0';
+
+            // Confetti Hearts
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('confetti-heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+                heart.style.backgroundColor = ['#ff69b4', '#ffee58', '#42a5f5'][Math.floor(Math.random() * 3)];
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 5000);
+            }
+
+            const message = document.createElement('p');
+            message.textContent = "I love you more than words can say!";
+            message.style.cssText = "color: #e91e63; font-weight: bold; margin-top: 15px; font-size: 1.5em;";
+            container.appendChild(message);
+            
+            button.disabled = true;
+        });
+    </script>
+</body>
+</html>
