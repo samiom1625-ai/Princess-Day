@@ -5,7 +5,7 @@
     <title>For My Princess • Samridhy 💗</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Nice fonts -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
@@ -45,7 +45,8 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating glowing blobs */
+        /* Glowing blobs */
+
         .orb {
             position: fixed;
             border-radius: 50%;
@@ -99,6 +100,7 @@
         }
 
         /* Background floating hearts */
+
         .bg-heart {
             position: fixed;
             width: 18px;
@@ -134,9 +136,42 @@
             }
         }
 
+        /* I Love You Watermark */
+
+        .watermark {
+            position: fixed;
+            z-index: 1;
+            inset: 0;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .watermark-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.3);
+            text-shadow:
+                0 0 20px rgba(255, 192, 203, 0.3),
+                0 0 45px rgba(255, 143, 183, 0.25);
+            opacity: 0.07;
+            transform: rotate(-18deg) translateY(10px);
+            white-space: nowrap;
+        }
+
+        @media (max-width: 600px) {
+            .watermark-text {
+                font-size: 3.2rem;
+                transform: rotate(-16deg) translateY(20px);
+            }
+        }
+
+        /* PAGE + CARD LAYOUT */
+
         .page {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             width: 100%;
             max-width: 960px;
             padding: 18px;
@@ -166,6 +201,7 @@
         @media (max-width: 800px) {
             .card {
                 grid-template-columns: 1fr;
+                padding: 22px 18px 20px;
             }
         }
 
@@ -177,6 +213,8 @@
         .right {
             text-align: left;
         }
+
+        /* HEADER */
 
         header {
             text-align: center;
@@ -190,7 +228,7 @@
             line-height: 1.2;
         }
 
-        .title-line span.name {
+        .title-line .name {
             background: linear-gradient(90deg, var(--pink) 0%, var(--purple) 50%, var(--gold) 100%);
             -webkit-background-clip: text;
             color: transparent;
@@ -244,7 +282,8 @@
             100% { transform: translateX(100%); }
         }
 
-        /* Sticky note + main photo */
+        /* STICKY NOTE + PHOTO */
+
         .photo-frame {
             position: relative;
             display: inline-block;
@@ -253,7 +292,7 @@
             border-radius: 28px;
             box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
             transform: rotate(-2.5deg);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
             overflow: hidden;
         }
 
@@ -293,6 +332,12 @@
             box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
         }
 
+        @media (max-width: 600px) {
+            .photo-main {
+                height: 220px;
+            }
+        }
+
         .badge-date {
             margin-top: 10px;
             display: inline-flex;
@@ -312,6 +357,27 @@
             background: var(--pink-deep);
             box-shadow: 0 0 12px rgba(255,79,154,0.8);
         }
+
+        .photo-strip {
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            scrollbar-width: thin;
+        }
+
+        .photo-mini {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            object-fit: cover;
+            flex: 0 0 auto;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+        }
+
+        /* TEXT + BUTTONS + HIDDEN SECTIONS */
 
         .greeting {
             font-size: 1.02rem;
@@ -350,7 +416,7 @@
 
         @keyframes blink {
             0%, 50% { opacity: 1; }
-            51%,100 { opacity: 0; }
+            51%,100% { opacity: 0; }
         }
 
         .buttons {
@@ -375,6 +441,7 @@
             position: relative;
             overflow: hidden;
             transition: transform 0.12s ease, box-shadow 0.3s ease, filter 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .btn-main::before {
@@ -417,6 +484,7 @@
             background: rgba(255, 250, 255, 0.85);
             color: rgba(59,11,109,0.9);
             font-size: 0.9rem;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .hidden-section {
@@ -458,25 +526,6 @@
         .hidden-section li::before {
             content: "♥ ";
             color: var(--pink-deep);
-        }
-
-        .photo-strip {
-            margin-top: 12px;
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 4px;
-            scrollbar-width: thin;
-        }
-
-        .photo-mini {
-            width: 70px;
-            height: 70px;
-            border-radius: 10px;
-            object-fit: cover;
-            flex: 0 0 auto;
-            border: 2px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.18);
         }
 
         .forever-tag {
@@ -529,10 +578,12 @@
         }
 
         /* Tiny credit line */
+
         .tiny-credit {
             margin-top: 6px;
             font-size: 0.65rem;
             opacity: 0.18;
+            text-align: center;
         }
 
         .tiny-credit a {
@@ -541,10 +592,16 @@
         }
 
         .tiny-credit a:hover {
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
-        /* Click confetti hearts */
+        .tiny-credit-name {
+            color: rgba(138, 19, 81, 0.52);
+            font-weight: 500;
+        }
+
+        /* Confetti hearts */
+
         .confetti-heart {
             position: fixed;
             width: 16px;
@@ -575,35 +632,208 @@
 
         @media (max-width: 600px) {
             .card {
-                padding: 22px 18px 18px;
+                padding: 22px 16px 18px;
             }
 
             .title-line {
                 font-size: 2.1rem;
             }
 
-            .photo-main {
-                height: 220px;
+            .buttons {
+                flex-direction: column;
+                align-items: stretch;
             }
+
+            .btn-main,
+            .btn-soft {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* ENVELOPE OVERLAY */
+
+        .envelope-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 5;
+            background: radial-gradient(circle at top, rgba(255,255,255,0.96), rgba(252,225,228,0.97));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            transition: opacity 0.8s ease;
+        }
+
+        .envelope-overlay.opened {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .envelope-wrapper {
+            max-width: 360px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            text-align: center;
+        }
+
+        .envelope-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--berry);
+        }
+
+        .envelope-subtitle {
+            font-size: 0.9rem;
+            color: rgba(59, 11, 109, 0.8);
+        }
+
+        .envelope {
+            position: relative;
+            width: 260px;
+            height: 170px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .envelope-body {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 70%;
+            background: linear-gradient(180deg, #ffe9f0, #ffc6dd);
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 18px 35px rgba(0,0,0,0.18);
+            overflow: hidden;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(180deg, #ffdfe9, #ffbcd2);
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transform-origin: top center;
+            transition: transform 0.8s ease;
+        }
+
+        .envelope-letter {
+            position: absolute;
+            left: 50%;
+            bottom: 10%;
+            transform: translateX(-50%);
+            width: 82%;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 10px 12px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+        }
+
+        .envelope-letter p {
+            font-size: 0.86rem;
+            color: rgba(59, 11, 109, 0.9);
+        }
+
+        .tap-text {
+            margin-top: 6px;
+            font-size: 0.8rem;
+            color: rgba(136, 19, 81, 0.9);
+        }
+
+        .tap-text span {
+            display: inline-block;
+            animation: tapPulse 1.4s infinite;
+        }
+
+        @keyframes tapPulse {
+            0%,100% { transform: translateY(0); }
+            50%     { transform: translateY(-2px); }
+        }
+
+        .envelope-heart {
+            position: absolute;
+            top: 46%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 22px;
+            height: 22px;
+            background: #ff8fb7;
+            clip-path: polygon(
+                50% 0%,
+                100% 35%,
+                100% 100%,
+                50% 65%,
+                0% 100%,
+                0% 35%
+            );
+            box-shadow: 0 0 14px rgba(255, 143, 183, 0.85);
+        }
+
+        .envelope-overlay.opened .envelope-flap {
+            transform: rotateX(180deg);
+        }
+
+        /* AUDIO ICON (optional subtle hint) */
+
+        .audio-hint {
+            margin-top: 4px;
+            font-size: 0.75rem;
+            color: rgba(59, 11, 109, 0.6);
         }
     </style>
 </head>
 <body>
 
-    <!-- Background elements -->
+    <!-- Background orbs -->
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
 
+    <!-- Background floating hearts -->
     <div class="bg-heart" style="left: 10%; animation-delay: 0s; animation-duration: 21s;"></div>
     <div class="bg-heart" style="left: 30%; animation-delay: 4s; animation-duration: 24s;"></div>
     <div class="bg-heart" style="left: 50%; animation-delay: 2s; animation-duration: 20s;"></div>
     <div class="bg-heart" style="left: 70%; animation-delay: 7s; animation-duration: 26s;"></div>
     <div class="bg-heart" style="left: 88%; animation-delay: 1s; animation-duration: 22s;"></div>
 
+    <!-- I Love You watermark -->
+    <div class="watermark">
+        <div class="watermark-text">I Love You</div>
+    </div>
+
+    <!-- Background music (place music.mp3 next to index.html) -->
+    <audio id="bg-music" src="music.mp3" preload="auto" loop></audio>
+
+    <!-- Envelope overlay -->
+    <div id="envelope-overlay" class="envelope-overlay">
+        <div class="envelope-wrapper">
+            <div class="envelope-title">A little letter for my princess 💌</div>
+            <div class="envelope-subtitle">Tap the envelope to open it.</div>
+
+            <div class="envelope" id="envelope-click">
+                <div class="envelope-body"></div>
+                <div class="envelope-flap"></div>
+                <div class="envelope-heart"></div>
+                <div class="envelope-letter">
+                    <p>To: <strong>Samridhy</strong></p>
+                    <p>From: someone who loves you way too much. 💗</p>
+                    <p class="tap-text"><span>Tap to open</span></p>
+                </div>
+            </div>
+
+            <div class="audio-hint">🔈 Music will start when you open it (if your phone allows).</div>
+        </div>
+    </div>
+
+    <!-- Main page content -->
     <div class="page">
         <div class="card">
-            <!-- LEFT SIDE (photo + mini gallery) -->
+            <!-- LEFT SIDE -->
             <div class="left">
                 <header>
                     <div class="title-line">
@@ -618,7 +848,7 @@
                 </header>
 
                 <div class="photo-frame">
-                    <!-- MAIN photo (slideshow will run here) -->
+                    <!-- MAIN photo (slideshow) -->
                     <img src="love.png" alt="Us together" class="photo-main" id="main-photo">
                     <div class="photo-caption">
                         My favorite view in this entire universe. 💘
@@ -630,13 +860,11 @@
                     <span>Every moment with you feels like a little festival of soft happiness.</span>
                 </div>
 
-                <!-- Extra photos strip (love1.png, love2.png, ...) -->
-                <div class="photo-strip" id="photo-strip">
-                    <!-- JS will populate & hide broken ones -->
-                </div>
+                <!-- Extra photos strip -->
+                <div class="photo-strip" id="photo-strip"></div>
             </div>
 
-            <!-- RIGHT SIDE (message + button + hidden love stuff) -->
+            <!-- RIGHT SIDE -->
             <div class="right">
                 <p class="greeting">
                     Hey my <span class="highlight-name">Princess</span>, 💌
@@ -697,7 +925,7 @@
                     <p class="signature">Omii</p>
                     <div class="tiny-credit">
                         <a href="https://kushagrakumar.me" target="_blank" rel="noopener noreferrer">
-                            copyright reserved by kushagra · kushagrakumar.me
+                            copyright reserved by <span class="tiny-credit-name">Kushagra Kumar</span>
                         </a>
                     </div>
                 </footer>
@@ -719,10 +947,6 @@
                 setTimeout(typeWriter, 35);
             }
         }
-
-        window.addEventListener("load", () => {
-            setTimeout(typeWriter, 700);
-        });
 
         // CONFETTI HEARTS
         function spawnConfettiHearts(count) {
@@ -758,7 +982,7 @@
             magicBtn.disabled = true;
         });
 
-        // Soft button scroll
+        // Soft button = scroll to top (for longer screens)
         document.getElementById("soft-btn").addEventListener("click", () => {
             window.scrollTo({
                 top: 0,
@@ -766,7 +990,7 @@
             });
         });
 
-        // Extra mini photos strip
+        // MINI GALLERY
         const miniPhotoContainer = document.getElementById("photo-strip");
         const extraPhotos = ["love1.png", "love2.png", "love3.png", "love4.png", "love5.png"];
 
@@ -781,7 +1005,7 @@
             miniPhotoContainer.appendChild(img);
         });
 
-        // Main slideshow in sticky note (love.png → love1.png → ... → repeat)
+        // SLIDESHOW
         const mainPhoto = document.getElementById("main-photo");
         const slideSources = ["love.png", "love1.png", "love2.png", "love3.png", "love4.png", "love5.png"];
         let slideIndex = 0;
@@ -797,8 +1021,42 @@
             }, 400);
         }
 
-        // change photo every 4.5s
         setInterval(nextSlide, 4500);
+
+        // ENVELOPE + MUSIC + START EXPERIENCE
+        const envelopeOverlay = document.getElementById("envelope-overlay");
+        const envelopeClick = document.getElementById("envelope-click");
+        const bgMusic = document.getElementById("bg-music");
+        let experienceStarted = false;
+
+        function startExperience() {
+            if (experienceStarted) return;
+            experienceStarted = true;
+
+            // Open flap + fade overlay
+            envelopeOverlay.classList.add("opened");
+
+            // Try to play music on user gesture
+            if (bgMusic) {
+                bgMusic.volume = 0.85;
+                bgMusic.play().catch(() => {
+                    // Ignore if browser blocks autoplay
+                });
+            }
+
+            // Start typewriter slightly after envelope opens
+            setTimeout(typeWriter, 700);
+        }
+
+        envelopeClick.addEventListener("click", startExperience);
+        envelopeOverlay.addEventListener("click", startExperience); // tap anywhere
+
+        // If something goes wrong and overlay is not removed after long time, fallback
+        setTimeout(() => {
+            if (!experienceStarted) {
+                startExperience();
+            }
+        }, 20000); // 20 sec safety fallback (optional)
     </script>
 </body>
 </html>
