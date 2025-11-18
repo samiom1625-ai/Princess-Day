@@ -2,79 +2,532 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>For My Princess • Samridhy 💗</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Princess Day, [Samridhy]! 👑</title>
+
+    <!-- Nice fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --pink: #ff8fb7;
+            --pink-deep: #ff4f9a;
+            --purple: #b388ff;
+            --deep-purple: #3b0b6d;
+            --berry: #8a1351;
+            --gold: #ffd54f;
+            --soft: #ffeef7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #fce1e4, #e8a8e8);
-            color: #4a148c;
-            text-align: center;
-            padding: 20px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--deep-purple);
+            overflow-x: hidden;
+            background: linear-gradient(-45deg, #fce1e4, #ffe2ff, #e3c5ff, #ffd1e8);
+            background-size: 320% 320%;
+            animation: bg-pan 18s ease infinite;
+            position: relative;
         }
 
-        .container {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
-            width: 90%;
+        @keyframes bg-pan {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        h1 {
-            font-size: 2.5em;
-            color: #880e4f;
-            animation: pulse 2s infinite;
+        /* Floating glowing blobs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.7;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            z-index: 0;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
+        .orb-1 {
+            width: 270px;
+            height: 270px;
+            background: rgba(255, 182, 193, 0.85);
+            top: -60px;
+            left: -50px;
+            animation: orbMove1 22s infinite alternate ease-in-out;
         }
 
-        .main-image {
+        .orb-2 {
+            width: 320px;
+            height: 320px;
+            background: rgba(179, 136, 255, 0.8);
+            bottom: -100px;
+            right: -60px;
+            animation: orbMove2 26s infinite alternate ease-in-out;
+        }
+
+        .orb-3 {
+            width: 220px;
+            height: 220px;
+            background: rgba(255, 213, 79, 0.7);
+            bottom: 8%;
+            left: 20%;
+            animation: orbMove3 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes orbMove1 {
+            from { transform: translate(0, 0); }
+            to   { transform: translate(40px, 60px); }
+        }
+
+        @keyframes orbMove2 {
+            from { transform: translate(0, 0); }
+            to   { transform: translate(-50px, -40px); }
+        }
+
+        @keyframes orbMove3 {
+            from { transform: translate(0, 0); }
+            to   { transform: translate(20px, -50px); }
+        }
+
+        /* Background floating hearts */
+        .bg-heart {
+            position: fixed;
+            width: 18px;
+            height: 18px;
+            top: 110%;
+            transform: rotate(45deg);
+            background: #ff9dc7;
+            opacity: 0.12;
+            clip-path: polygon(
+                50% 0%,
+                100% 35%,
+                100% 100%,
+                50% 65%,
+                0% 100%,
+                0% 35%
+            );
+            animation: float-bg-heart 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes float-bg-heart {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-130vh) rotate(65deg);
+                opacity: 0;
+            }
+        }
+
+        .page {
+            position: relative;
+            z-index: 2;
             width: 100%;
-            max-width: 300px;
-            border-radius: 10px;
-            margin: 20px 0;
-            transition: transform 0.5s ease-in-out;
+            max-width: 960px;
+            padding: 18px;
         }
 
-        .main-image:hover {
-            transform: rotate(3deg) scale(1.05);
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 26px 24px 24px;
+            box-shadow:
+                0 22px 50px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.1fr);
+            gap: 22px;
+            align-items: center;
+            animation: cardIn 0.9s ease-out;
         }
 
-        #surprise-button {
-            padding: 15px 30px;
-            background-color: #ff69b4;
-            color: white;
+        @keyframes cardIn {
+            0%   { opacity: 0; transform: translateY(25px) scale(0.96); }
+            100% { opacity: 1; transform: translateY(0)    scale(1); }
+        }
+
+        @media (max-width: 800px) {
+            .card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .left {
+            text-align: center;
+            padding: 6px 8px 4px;
+        }
+
+        .right {
+            text-align: left;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .title-line {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.55rem;
+            color: var(--berry);
+            line-height: 1.2;
+        }
+
+        .title-line span.name {
+            background: linear-gradient(90deg, var(--pink) 0%, var(--purple) 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .crown {
+            display: inline-block;
+            font-size: 1.5rem;
+            margin-left: 4px;
+            filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.8));
+            animation: crownWiggle 2.4s infinite ease-in-out;
+        }
+
+        @keyframes crownWiggle {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            40%      { transform: translateY(-3px) rotate(-6deg); }
+            60%      { transform: translateY(-3px) rotate(4deg); }
+        }
+
+        .subtitle {
+            font-size: 0.98rem;
+            color: rgba(59, 11, 109, 0.85);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-top: 6px;
+        }
+
+        .divider {
+            width: 110px;
+            height: 3px;
+            border-radius: 999px;
+            margin: 10px auto 16px;
+            background: linear-gradient(90deg, var(--pink), var(--gold), var(--purple));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .divider::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0.9), transparent, rgba(255,255,255,0.9));
+            transform: translateX(-100%);
+            animation: dividerGlow 2.6s infinite;
+        }
+
+        @keyframes dividerGlow {
+            0%   { transform: translateX(-100%); }
+            60%  { transform: translateX(100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .photo-frame {
+            position: relative;
+            display: inline-block;
+            padding: 8px 8px 14px;
+            background: #fffdf9;
+            border-radius: 18px;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+            transform: rotate(-2.5deg);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .photo-frame::before {
+            content: "";
+            position: absolute;
+            width: 58px;
+            height: 18px;
+            background: rgba(255, 248, 220, 0.9);
+            border-radius: 4px;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.18);
+        }
+
+        .photo-main {
+            width: 240px;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 14px;
+            display: block;
+        }
+
+        .photo-caption {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: rgba(58, 10, 78, 0.75);
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) translateY(-4px) scale(1.02);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .badge-date {
+            margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(255, 238, 247, 0.95);
+            font-size: 0.82rem;
+            color: rgba(59, 11, 109, 0.9);
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--pink-deep);
+            box-shadow: 0 0 12px rgba(255,79,154,0.8);
+        }
+
+        .greeting {
+            font-size: 1.02rem;
+            margin-bottom: 10px;
+        }
+
+        .highlight-name {
+            font-weight: 600;
+            color: var(--berry);
+        }
+
+        .main-text {
+            font-size: 0.96rem;
+            line-height: 1.7;
+            color: rgba(49, 9, 87, 0.95);
+        }
+
+        .quote-box {
+            margin-top: 12px;
+            padding: 10px 12px;
+            border-radius: 14px;
+            background: rgba(255, 240, 248, 0.9);
+            border: 1px dashed rgba(255, 143, 183, 0.7);
+            font-size: 0.92rem;
+            font-style: italic;
+            color: rgba(59, 11, 109, 0.9);
+            min-height: 1.6em;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 0.6ch;
+            text-align: left;
+            animation: blink 1s steps(1) infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%,100% { opacity: 0; }
+        }
+
+        .buttons {
+            margin-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn-main {
+            padding: 12px 26px;
+            border-radius: 999px;
             border: none;
-            border-radius: 50px;
-            font-size: 1.2em;
             cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.3s, transform 0.1s;
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--pink-deep), #ff8fb7);
+            box-shadow:
+                0 10px 26px rgba(255, 79, 154, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.7);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.12s ease, box-shadow 0.3s ease, filter 0.2s ease;
         }
 
-        #surprise-button:active {
-            transform: scale(0.98);
+        .btn-main::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.9), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        /* Confetti hearts */
+        .btn-main:hover::before {
+            opacity: 1;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-2px) scale(1.02);
+            filter: brightness(1.05);
+            box-shadow:
+                0 14px 34px rgba(255, 79, 154, 0.75),
+                0 0 0 1px rgba(255, 255, 255, 0.85);
+        }
+
+        .btn-main:active {
+            transform: translateY(1px) scale(0.98);
+            box-shadow:
+                0 6px 18px rgba(255, 79, 154, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-main:disabled {
+            cursor: default;
+            opacity: 0.9;
+        }
+
+        .btn-soft {
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 143, 183, 0.7);
+            background: rgba(255, 250, 255, 0.85);
+            color: rgba(59,11,109,0.9);
+            font-size: 0.9rem;
+        }
+
+        .hidden-section {
+            margin-top: 18px;
+            padding: 14px 16px;
+            border-radius: 18px;
+            background: rgba(255, 242, 250, 0.96);
+            border: 1px solid rgba(255, 143, 183, 0.7);
+            font-size: 0.94rem;
+            line-height: 1.7;
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .hidden-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .hidden-section h3 {
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+            color: var(--berry);
+        }
+
+        .hidden-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 4px;
+        }
+
+        .hidden-section li {
+            margin-bottom: 4px;
+        }
+
+        .hidden-section li::before {
+            content: "♥ ";
+            color: var(--pink-deep);
+        }
+
+        .photo-strip {
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            scrollbar-width: thin;
+        }
+
+        .photo-mini {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            object-fit: cover;
+            flex: 0 0 auto;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+        }
+
+        .forever-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.96), rgba(255, 203, 229, 0.96));
+            font-size: 0.86rem;
+            font-weight: 500;
+            color: rgba(59,11,109,0.96);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .forever-tag.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .forever-pulse {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--pink-deep);
+            box-shadow: 0 0 0 0 rgba(255, 79, 154, 0.7);
+            animation: pulseDot 1.6s infinite;
+        }
+
+        @keyframes pulseDot {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,79,154,0.7); }
+            70% { transform: scale(1.7); box-shadow: 0 0 0 7px rgba(255,79,154,0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,79,154,0); }
+        }
+
+        footer {
+            margin-top: 18px;
+            font-size: 0.9rem;
+            color: rgba(58, 10, 78, 0.9);
+            text-align: center;
+        }
+
+        .signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            margin-top: 4px;
+        }
+
+        /* Click confetti hearts */
         .confetti-heart {
             position: fixed;
-            width: 15px;
-            height: 15px;
-            opacity: 0.8;
+            width: 16px;
+            height: 16px;
             top: -10px;
-            animation: fall linear infinite;
             transform: rotate(45deg);
             background-color: pink;
             clip-path: polygon(
@@ -85,62 +538,224 @@
                 0% 100%,
                 0% 35%
             );
+            opacity: 0.9;
+            animation: confetti-fall linear forwards;
+            pointer-events: none;
+            z-index: 10;
         }
 
-        @keyframes fall {
+        @keyframes confetti-fall {
             to {
-                transform: translateY(100vh) rotate(500deg);
+                transform: translateY(105vh) rotate(520deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 22px 18px 18px;
+            }
+
+            .title-line {
+                font-size: 2.1rem;
+            }
+
+            .photo-main {
+                width: 210px;
+                height: 210px;
             }
         }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <h1>Happy Princess Day, My Love!</h1>
-        <p class="subtitle">You deserve all the crowns and kisses in the world.</p>
 
-        <div class="message-box">
-            <p>Dearest [Samridhy], today and every day, you shine brighter than any jewel. Thank you for filling my life with magic. I love you!</p>
-        </div>
-        
-        <img src="princess-graphic.png" alt="A lovely princess drawing" class="main-image">
+    <!-- Background elements -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
-        <div class="animation-target">
-            <button id="surprise-button">Click for a Royal Surprise! 💖</button>
-        </div>
+    <div class="bg-heart" style="left: 10%; animation-delay: 0s; animation-duration: 21s;"></div>
+    <div class="bg-heart" style="left: 30%; animation-delay: 4s; animation-duration: 24s;"></div>
+    <div class="bg-heart" style="left: 50%; animation-delay: 2s; animation-duration: 20s;"></div>
+    <div class="bg-heart" style="left: 70%; animation-delay: 7s; animation-duration: 26s;"></div>
+    <div class="bg-heart" style="left: 88%; animation-delay: 1s; animation-duration: 22s;"></div>
 
-        <div class="footer-note">
-            <p>Forever Yours, [Omii]</p>
+    <div class="page">
+        <div class="card">
+            <!-- LEFT SIDE (photo + mini gallery) -->
+            <div class="left">
+                <header>
+                    <div class="title-line">
+                        For My Princess
+                        <span class="name">Samridhy</span>
+                        <span class="crown">👑</span>
+                    </div>
+                    <div class="subtitle">
+                        Today is officially&nbsp;your&nbsp;day.
+                    </div>
+                    <div class="divider"></div>
+                </header>
+
+                <div class="photo-frame">
+                    <!-- MAIN photo (you: love.png) -->
+                    <img src="love.png" alt="Us together" class="photo-main">
+                    <div class="photo-caption">
+                        My favorite view in this entire universe. 💘
+                    </div>
+                </div>
+
+                <div class="badge-date">
+                    <span class="badge-dot"></span>
+                    <span>Every moment with you feels like a little festival of soft happiness.</span>
+                </div>
+
+                <!-- Extra photos strip (love1.png, love2.png, ...) -->
+                <div class="photo-strip" id="photo-strip">
+                    <!-- JS will populate & hide broken ones -->
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE (message + button + hidden love stuff) -->
+            <div class="right">
+                <p class="greeting">
+                    Hey my <span class="highlight-name">Princess</span>, 💌
+                </p>
+                <p class="main-text">
+                    There are a million pretty things in this world – sunsets, starlight, city lights, and skies after rain – 
+                    but none of them feel as warm as just seeing you smile.
+                    <br><br>
+                    I don’t know what I did right to have you, but I promise I’ll spend every day proving that you’re loved, 
+                    cherished, and lowkey the main character of my heart.
+                </p>
+
+                <div class="quote-box">
+                    <span id="typewriter"></span><span class="cursor">|</span>
+                </div>
+
+                <div class="buttons">
+                    <button class="btn-main" id="magic-btn">
+                        Start the Magic ✨
+                    </button>
+                    <button class="btn-soft" id="soft-btn">
+                        Read that again slowly 🫶
+                    </button>
+                </div>
+
+                <div class="hidden-section" id="reasons">
+                    <h3>Some of the many reasons I adore you:</h3>
+                    <ul>
+                        <li>You turn normal, boring days into “I’ll remember this forever” type of memories.</li>
+                        <li>Your laugh is literally my favorite sound – it makes everything feel lighter.</li>
+                        <li>You care so deeply, even about small things, and that’s the purest kind of beautiful.</li>
+                        <li>When you talk about what you love, your eyes sparkle and I just… melt.</li>
+                        <li>No matter how chaotic life gets, you are my calm, my safe place, my home.</li>
+                    </ul>
+                </div>
+
+                <div class="hidden-section" id="coupon">
+                    <h3>Princess Privileges Pass 🎟️</h3>
+                    <p>
+                        This pass is good for:
+                    </p>
+                    <ul>
+                        <li>Unlimited “I love you”s (no expiry, no limit).</li>
+                        <li>One big warm hug whenever you want – in person or virtual.</li>
+                        <li>Me listening to your rants, your tea, your overthinking, everything – judgement free.</li>
+                        <li>Random cute texts at 2am just because I’m thinking of you.</li>
+                    </ul>
+                    <p style="margin-top: 6px; font-size: 0.86rem; opacity: 0.9;">
+                        Terms & Conditions: You’re stuck with me. For a long time. Maybe forever. Sorry, not sorry. 😌💘
+                    </p>
+                </div>
+
+                <div class="forever-tag" id="forever-tag">
+                    <span class="forever-pulse"></span>
+                    <span>You’re not just my princess for today. You’re my forever favorite human. 💞</span>
+                </div>
+
+                <footer>
+                    <p>With all my love, always,</p>
+                    <p class="signature">Omii</p>
+                </footer>
+            </div>
         </div>
     </div>
 
     <script>
-        document.getElementById('surprise-button').addEventListener('click', function() {
-            const container = document.querySelector('.animation-target');
-            const button = document.getElementById('surprise-button');
-            
-            button.textContent = "Magical Moment! ✨";
-            button.style.backgroundColor = '#9c27b0';
+        // TYPEWRITER
+        const quoteText =
+            "If I could choose any version of life, I’d always pick the one where it’s just you and me, laughing about something stupid and feeling like the world is ours.";
+        const typeTarget = document.getElementById("typewriter");
+        let typeIndex = 0;
 
-            // Confetti Hearts
-            for (let i = 0; i < 50; i++) {
-                const heart = document.createElement('div');
-                heart.classList.add('confetti-heart');
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-                heart.style.backgroundColor = ['#ff69b4', '#ffee58', '#42a5f5'][Math.floor(Math.random() * 3)];
-                document.body.appendChild(heart);
-                
-                setTimeout(() => heart.remove(), 5000);
+        function typeWriter() {
+            if (typeIndex < quoteText.length) {
+                typeTarget.textContent += quoteText.charAt(typeIndex);
+                typeIndex++;
+                setTimeout(typeWriter, 35);
             }
+        }
 
-            const message = document.createElement('p');
-            message.textContent = "I love you more than words can say!";
-            message.style.cssText = "color: #e91e63; font-weight: bold; margin-top: 15px; font-size: 1.5em;";
-            container.appendChild(message);
-            
-            button.disabled = true;
+        window.addEventListener("load", () => {
+            setTimeout(typeWriter, 700);
+        });
+
+        // CONFETTI HEARTS
+        function spawnConfettiHearts(count) {
+            for (let i = 0; i < count; i++) {
+                const heart = document.createElement("div");
+                heart.classList.add("confetti-heart");
+                const startLeft = Math.random() * 100;
+                heart.style.left = startLeft + "vw";
+                heart.style.animationDuration = (Math.random() * 2 + 3.5) + "s";
+                const colors = ["#ff69b4", "#ffeb3b", "#42a5f5", "#f48fb1", "#ff8fb7"];
+                heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.transform = "rotate(45deg) scale(" + (Math.random() * 0.7 + 0.7) + ")";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 6500);
+            }
+        }
+
+        // MAGIC BUTTON
+        const magicBtn = document.getElementById("magic-btn");
+        const reasonsSec = document.getElementById("reasons");
+        const couponSec = document.getElementById("coupon");
+        const foreverTag = document.getElementById("forever-tag");
+
+        magicBtn.addEventListener("click", () => {
+            magicBtn.textContent = "Magic Unlocked ✨💗";
+            magicBtn.style.background = "linear-gradient(135deg, #9c27b0, #ff8fb7)";
+            spawnConfettiHearts(80);
+
+            reasonsSec.classList.add("visible");
+            setTimeout(() => couponSec.classList.add("visible"), 250);
+            setTimeout(() => foreverTag.classList.add("visible"), 550);
+
+            magicBtn.disabled = true;
+        });
+
+        // Soft button: smooth scroll top of text
+        document.getElementById("soft-btn").addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+        // EXTRA MINI PHOTOS: love1.png, love2.png, love3.png ...
+        const miniPhotoContainer = document.getElementById("photo-strip");
+        const extraPhotos = ["love1.png", "love2.png", "love3.png", "love4.png", "love5.png"];
+
+        extraPhotos.forEach(src => {
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = "Memory photo";
+            img.className = "photo-mini";
+            img.onerror = function () {
+                // Hide if file doesn't exist
+                this.style.display = "none";
+            };
+            miniPhotoContainer.appendChild(img);
         });
     </script>
 </body>
